@@ -1,67 +1,67 @@
 {
   "images" : [
     {
-      "filename" : "run.jpeg",
+      "filename" : "run-9.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "run 1.jpeg",
+      "filename" : "run-8.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
-      "filename" : "run 2.jpeg",
+      "filename" : "run-10.png",
       "idiom" : "iphone",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
-      "filename" : "run 3.jpeg",
+      "filename" : "run-6.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "run 4.jpeg",
+      "filename" : "run-4.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "run 5.jpeg",
+      "filename" : "run-5.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "run 6.jpeg",
+      "filename" : "run-2.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
-      "filename" : "run 7.jpeg",
+      "filename" : "run-7.png",
       "idiom" : "iphone",
       "scale" : "1x",
       "size" : "57x57"
     },
     {
-      "filename" : "run 8.jpeg",
+      "filename" : "run-3.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "57x57"
     },
     {
-      "filename" : "run 10.jpeg",
+      "filename" : "run-2 1.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "run 9.jpeg",
+      "filename" : "run.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
@@ -132,7 +132,7 @@
       "size" : "83.5x83.5"
     },
     {
-      "filename" : "run 11.jpeg",
+      "filename" : "run-11.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
