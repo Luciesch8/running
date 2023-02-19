@@ -2,19 +2,30 @@
 //  Date.swift
 //  Running
 //
-//  Created by Ah lucie nous gênes 🍄 on 19/02/2023.
+//  Created by Ah lucie nous gênes 🍄 on 02/02/2023.
 //
 
-import SwiftUI
+import Foundation
 
-struct Date: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct Date_Previews: PreviewProvider {
-    static var previews: some View {
-        Date()
+extension Date {
+    func formattedApple() -> String {
+        let formatter = DateFormatter()
+        let calendar = Calendar.current
+        let oneWeekAgo = calendar.startOfDay(for: Date.now.addingTimeInterval(-7*24*3600))
+        let oneWeekAfter = calendar.startOfDay(for: Date.now.addingTimeInterval(7*24*3600))
+        
+        if calendar.isDateInToday(self) {
+            return formatted(date: .omitted, time: .shortened)
+        } else if calendar.isDateInYesterday(self) || calendar.isDateInTomorrow(self) {
+            formatter.doesRelativeDateFormatting = true
+            formatter.dateStyle = .full
+        } else if self > oneWeekAgo && self < oneWeekAfter {
+            formatter.dateFormat = "EEEE"
+        } else if calendar.isDate(self, equalTo: .now, toGranularity: .year) {
+            formatter.dateFormat = "d MMM"
+        } else {
+            formatter.dateFormat = "d MMM y"
+        }
+        return formatter.string(from: self)
     }
 }

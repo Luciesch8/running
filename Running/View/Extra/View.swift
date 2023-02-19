@@ -2,19 +2,54 @@
 //  View.swift
 //  Running
 //
-//  Created by Ah lucie nous gênes 🍄 on 19/02/2023.
+//  Created by Ah lucie nous gênes 🍄 on 11/02/2023.
 //
+
 
 import SwiftUI
 
-struct View: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct Background: ViewModifier {
+    @Environment(\.colorScheme) var colorScheme
+    var background: Material { colorScheme == .light ? .regularMaterial : .thickMaterial }
+    
+    func body(content: Content) -> some View {
+        content
+            .background(background)
+            .cornerRadius(10)
+            .compositingGroup()
+            .shadow(color: Color(.systemFill), radius: 5)
     }
 }
 
-struct View_Previews: PreviewProvider {
-    static var previews: some View {
-        View()
+extension View {
+    func materialBackground() -> some View {
+        self.modifier(Background())
+    }
+    
+    @ViewBuilder
+    func `if`<Content: View>(_ applyModifier: Bool = true, @ViewBuilder content: (Self) -> Content) -> some View {
+        if applyModifier {
+            content(self)
+        } else {
+            self
+        }
+    }
+    
+    func horizontallyCentred() -> some View {
+        HStack {
+            Spacer(minLength: 0)
+            self
+            Spacer(minLength: 0)
+        }
+    }
+    
+    func bigButton() -> some View {
+        self
+            .font(.body.bold())
+            .padding()
+            .horizontallyCentred()
+            .foregroundColor(.white)
+            .background(Color.accentColor)
+            .cornerRadius(15)
     }
 }

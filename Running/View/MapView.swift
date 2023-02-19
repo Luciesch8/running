@@ -6,15 +6,27 @@
 //
 
 import SwiftUI
+import MapKit
 
-struct MapView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+struct MapView: UIViewRepresentable {
+    @EnvironmentObject var vm: ViewModel
 
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView()
+    func makeUIView(context: Context) -> MKMapView {
+        let mapView = MKMapView()
+        
+        mapView.delegate = vm
+        vm.mapView = mapView
+        
+        mapView.showsUserLocation = true
+        mapView.showsScale = true
+        mapView.showsCompass = true
+        mapView.isPitchEnabled = false
+        
+        let tapRecognizer = UITapGestureRecognizer(target: vm, action: #selector(ViewModel.handleTap))
+        mapView.addGestureRecognizer(tapRecognizer)
+        
+        return mapView
     }
+    
+    func updateUIView(_ mapView: MKMapView, context: Context) {}
 }

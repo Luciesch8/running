@@ -2,19 +2,28 @@
 //  Defaults.swift
 //  Running
 //
-//  Created by Ah lucie nous gênes 🍄 on 19/02/2023.
+//  Created by Ah lucie nous gênes 🍄 on 03/02/2023.
 //
 
-import SwiftUI
+import Foundation
 
-struct Defaults: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+@propertyWrapper
+struct Defaults<ValueType> {
+    let defaults = UserDefaults.standard
+    
+    let key: String
+    let defaultValue: ValueType
+    
+    func reset() {
+        defaults.set(defaultValue, forKey: key)
     }
-}
 
-struct Defaults_Previews: PreviewProvider {
-    static var previews: some View {
-        Defaults()
+    var wrappedValue: ValueType {
+        get {
+            defaults.object(forKey: key) as? ValueType ?? defaultValue
+        }
+        set {
+            defaults.set(newValue, forKey: key)
+        }
     }
 }

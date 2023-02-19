@@ -2,19 +2,32 @@
 //  ShareView.swift
 //  Running
 //
-//  Created by Ah lucie nous gênes 🍄 on 19/02/2023.
+//  Created by Ah lucie nous gênes 🍄 on 12/02/2023.
 //
+
 
 import SwiftUI
 
-struct ShareView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct ShareView: UIViewControllerRepresentable {
+    let url: URL
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: [url], applicationActivities: nil)
     }
+    
+    func updateUIViewController(_ vc: UIActivityViewController, context: Context) {}
 }
 
-struct ShareView_Previews: PreviewProvider {
-    static var previews: some View {
-        ShareView()
+extension View {
+    func shareSheet(url: URL, isPresented: Binding<Bool>) -> some View {
+        self.sheet(isPresented: isPresented) {
+            if #available(iOS 16, *) {
+                ShareView(url: url)
+                    .ignoresSafeArea()
+                    .presentationDetents([.medium, .large])
+            } else {
+                ShareView(url: url)
+            }
+        }
     }
 }

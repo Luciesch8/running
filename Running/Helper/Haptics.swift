@@ -2,19 +2,25 @@
 //  Haptics.swift
 //  Running
 //
-//  Created by Ah lucie nous gênes 🍄 on 19/02/2023.
+//  Created by Ah lucie nous gênes 🍄 on 03/02/2023.
 //
 
-import SwiftUI
+import UIKit
 
-struct Haptics: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct Haptics {
+    static func tap() {
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
     }
-}
-
-struct Haptics_Previews: PreviewProvider {
-    static var previews: some View {
-        Haptics()
+    
+    static func impact() {
+        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+    }
+    
+    static func success() {
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+    }
+    
+    static func error() {
+        UINotificationFeedbackGenerator().notificationOccurred(.error)
     }
 }

@@ -2,19 +2,27 @@
 //  Store.swift
 //  Running
 //
-//  Created by Ah lucie nous gênes 🍄 on 19/02/2023.
+//  Created by Ah lucie nous gênes 🍄 on 03/02/2023.
 //
 
-import SwiftUI
+import UIKit
+import StoreKit
 
-struct Store: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct Store {
+    static func requestRating() {
+        if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+            SKStoreReviewController.requestReview(in: scene)
+        }
+    }
+    
+    static func writeReview() {
+        var components = URLComponents(url: APP_URL, resolvingAgainstBaseURL: false)
+        components?.queryItems = [
+            URLQueryItem(name: "action", value: "write-review")
+        ]
+        if let url = components?.url {
+            UIApplication.shared.open(url)
+        }
     }
 }
 
-struct Store_Previews: PreviewProvider {
-    static var previews: some View {
-        Store()
-    }
-}

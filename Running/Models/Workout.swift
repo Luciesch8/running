@@ -2,19 +2,51 @@
 //  Workout.swift
 //  Running
 //
-//  Created by Ah lucie nous gênes 🍄 on 19/02/2023.
+//  Created by Ah lucie nous gênes 🍄 on 15/01/2023.
 //
 
-import SwiftUI
+import Foundation
+import HealthKit
+import MapKit
+import CoreLocation
 
-struct Workout: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class Workout: NSObject {
+    let type: WorkoutType
+    let polyline: MKPolyline
+    let locations: [CLLocation]
+    let date: Date
+    let duration: Double
+    let distance: Double
+    let elevation: Double
+    
+    init(type: WorkoutType, polyline: MKPolyline, locations: [CLLocation], date: Date, duration: Double) {
+        self.type = type
+        self.polyline = polyline
+        self.locations = locations
+        self.date = date
+        self.duration = duration
+        self.distance = locations.distance
+        self.elevation = locations.elevation
     }
+    
+    convenience init(hkWorkout: HKWorkout, locations: [CLLocation]) {
+        let coords = locations.map(\.coordinate)
+        let type = WorkoutType(hkType: hkWorkout.workoutActivityType)
+        let polyline = MKPolyline(coordinates: coords, count: coords.count)
+        let date = hkWorkout.startDate
+        let duration = hkWorkout.duration
+        self.init(type: type, polyline: polyline, locations: locations, date: date, duration: duration)
+    }
+    
+    static let example = Workout(type: .walk, polyline: MKPolyline(), locations: [], date: .now, duration: 3456)
 }
 
-struct Workout_Previews: PreviewProvider {
-    static var previews: some View {
-        Workout()
+extension Workout: MKOverlay {
+    var coordinate: CLLocationCoordinate2D {
+        polyline.coordinate
+    }
+    
+    var boundingMapRect: MKMapRect {
+        polyline.boundingMapRect
     }
 }

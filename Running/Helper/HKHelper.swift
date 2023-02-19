@@ -2,19 +2,71 @@
 //  HKHelper.swift
 //  Running
 //
-//  Created by Ah lucie nous gênes 🍄 on 19/02/2023.
+//  Created by Ah lucie nous gênes 🍄 on 23/01/2023.
 //
 
-import SwiftUI
+import Foundation
+import HealthKit
+import CoreLocation
+import MapKit
 
-struct HKHelper: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct HKHelper {
+    static let healthStore = HKHealthStore()
+    static let available = HKHealthStore.isHealthDataAvailable()
+    
+    static func requestAuth() async -> HKAuthorizationStatus {
+        let types: Set = [
+            HKObjectType.workoutType(),
+            HKSeriesType.workoutRoute()
+        ]
+        
+        try? await healthStore.requestAuthorization(toShare: types, read: types)
+        return status
     }
-}
-
-struct HKHelper_Previews: PreviewProvider {
-    static var previews: some View {
-        HKHelper()
+    
+    static var status: HKAuthorizationStatus {
+        let workoutStatus = healthStore.authorizationStatus(for: HKObjectType.workoutType())
+        let routeStatus = healthStore.authorizationStatus(for: HKSeriesType.workoutRoute())
+        if workoutStatus == .sharingAuthorized && routeStatus == .sharingAuthorized {
+            return .sharingAuthorized
+        } else if workoutStatus == .notDetermined && routeStatus == .notDetermined {
+            return .notDetermined
+        } else {
+            return .sharingDenied
+        }
+    }
+    
+    static func loadWorkouts(completion: @escaping ([HKWorkout]) -> Void) {
+        let sort = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+        let query = HKSampleQuery(sampleType: .workoutType(), predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: [sort]) { query, samples, error in
+            guard let workouts = samples as? [HKWorkout] else {
+                completion([])
+                return
+            }
+            completion(workouts)
+        }
+        healthStore.execute(query)
+    }
+    
+    static func loadWorkoutRoute(hkWorkout: HKWorkout, completion: @escaping ([CLLocation]) -> Void) {
+        let type = HKSeriesType.workoutRoute()
+        let predicate = HKQuery.predicateForObjects(from: hkWorkout)
+        
+        let routeQuery = HKSampleQuery(sampleType: type, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { query, samples, error in
+            guard let route = samples?.first as? HKWorkoutRoute else {
+                completion([])
+                return
+            }
+            
+            var locations = [CLLocation]()
+            let locationsQuery = HKWorkoutRouteQuery(route: route) { query, newLocations, finished, error in
+                locations.append(contentsOf: newLocations ?? [])
+                if finished {
+                    completion(locations)
+                }
+            }
+            self.healthStore.execute(locationsQuery)
+        }
+        healthStore.execute(routeQuery)
     }
 }

@@ -2,19 +2,37 @@
 //  CLLocation.swift
 //  Running
 //
-//  Created by Ah lucie nous gênes 🍄 on 19/02/2023.
+//  Created by Ah lucie nous gênes 🍄 on 02/02/2023.
 //
 
-import SwiftUI
+import Foundation
+import CoreLocation
 
-struct CLLocation: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+extension Array where Element == CLLocation {
+    var distance: Double {
+        guard count > 1 else { return 0 }
+        var distance = Double.zero
+        
+        for i in 0..<count-1 {
+            let location = self[i]
+            let nextLocation = self[i+1]
+            distance += nextLocation.distance(from: location)
+        }
+        return distance
     }
-}
-
-struct CLLocation_Previews: PreviewProvider {
-    static var previews: some View {
-        CLLocation()
+    
+    var elevation: Double {
+        guard count > 1 else { return 0 }
+        var elevation = Double.zero
+        
+        for i in 0..<count-1 {
+            let location = self[i]
+            let nextLocation = self[i+1]
+            let delta = nextLocation.altitude - location.altitude
+            if delta > 0 {
+                elevation += delta
+            }
+        }
+        return elevation
     }
 }
