@@ -28,19 +28,20 @@ struct WorkoutBar: View {
                         .font(.subheadline)
                         .opacity(vm.pulse ? 1 : 0)
                 } else {
-                    Text(workout.date.formattedApple())
+                    Text(workout.date.formattedApple()) // Afficher la date formatée
+
                 }
             }
             .animation(.default, value: vm.pulse)
             
             HStack {
-                WorkoutStat(name: "Distance", value: Measurement(value: workout.distance, unit: UnitLength.meters).formatted())
+                WorkoutStat(name: "Distance", value: Measurement(value: workout.distance, unit: UnitLength.meters).formatted())// Afficher la distance formatée
                 Spacer(minLength: 0)
-                WorkoutStat(name: "Duration", value: DateComponentsFormatter().string(from: workout.duration) ?? "")
+                WorkoutStat(name: "Duration", value: DateComponentsFormatter().string(from: workout.duration) ?? "")// Afficher la durée formatée
                 Spacer(minLength: 0)
-                WorkoutStat(name: "Speed", value: Measurement(value: workout.distance / workout.duration, unit: UnitSpeed.metersPerSecond).formatted())
+                WorkoutStat(name: "Speed", value: Measurement(value: workout.distance / workout.duration, unit: UnitSpeed.metersPerSecond).formatted()) // Afficher la vitesse formatée
                 Spacer(minLength: 0)
-                WorkoutStat(name: "Elevation", value: Measurement(value: workout.elevation, unit: UnitLength.meters).formatted())
+                WorkoutStat(name: "Elevation", value: Measurement(value: workout.elevation, unit: UnitLength.meters).formatted())// Afficher l'élévation formatée
             }
         }
         .padding(.horizontal, 12)
@@ -61,10 +62,10 @@ struct WorkoutBar: View {
                 }
                 .onEnded { value in
                     if value.predictedEndTranslation.height > 50 {
-                        vm.selectedWorkout = nil
+                        vm.selectedWorkout = nil // Ignorer l'entraînement lorsqu'il dépasse le seuil
                     } else {
                         withAnimation(.spring()) {
-                            offset = 0
+                            offset = 0 // Réinitialiser le décalage à la fin du geste de glisser
                         }
                     }
                 }

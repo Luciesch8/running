@@ -10,6 +10,6 @@ import CoreLocation
 
 extension CLLocationCoordinate2D {
     var location: CLLocation {
-        CLLocation(latitude: latitude, longitude: longitude)
+        CLLocation(latitude: latitude, longitude: longitude) // Crée une instance CLLocation à partir des coordonnées
     }
 }

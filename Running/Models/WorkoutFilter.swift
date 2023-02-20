@@ -15,11 +15,11 @@ enum WorkoutDate: String, CaseIterable {
     var granularity: Calendar.Component {
         switch self {
         case .thisWeek:
-            return .weekOfMonth
+            return .weekOfMonth // Granularité de la date pour cette semaine est semaine du mois
         case .thisMonth:
-            return .month
+            return .month // Granularité de la date pour ce mois
         case .thisYear:
-            return .year
+            return .year // Granularité de la date pour cette année
         }
     }
 }

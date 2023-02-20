@@ -14,16 +14,16 @@ struct MapView: UIViewRepresentable {
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         
-        mapView.delegate = vm
-        vm.mapView = mapView
+        mapView.delegate = vm  // définition du délégué sur le view model
+        vm.mapView = mapView // transmission de la référence de la vue cartographique au view model
         
-        mapView.showsUserLocation = true
-        mapView.showsScale = true
-        mapView.showsCompass = true
-        mapView.isPitchEnabled = false
+        mapView.showsUserLocation = true // affiche l'emplacement actuel de l'utilisateur sur la carte
+        mapView.showsScale = true // affiche l'échelle de la carte
+        mapView.showsCompass = true // affichage de la boussole sur la carte
+        mapView.isPitchEnabled = false // désactiver le pitch
         
-        let tapRecognizer = UITapGestureRecognizer(target: vm, action: #selector(ViewModel.handleTap))
-        mapView.addGestureRecognizer(tapRecognizer)
+        let tapRecognizer = UITapGestureRecognizer(target: vm, action: #selector(ViewModel.handleTap))// création d'un outil de reconnaissance de gestes tactiles et définition de la méthode handleTap du model view
+        mapView.addGestureRecognizer(tapRecognizer) // adding the tap gesture recognizer to the map view
         
         return mapView
     }

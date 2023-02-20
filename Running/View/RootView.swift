@@ -29,29 +29,29 @@ struct RootView: View {
             
             VStack(spacing: 10) {
                 Spacer()
-                if let workout = vm.selectedWorkout {
+                if let workout = vm.selectedWorkout { // affiche une autre WorkoutBar en cas d'enregistrement
                     WorkoutBar(workout: workout, new: false)
                 }
                 FloatingButtons()
-                if vm.recording {
+                if vm.recording { // affiche une WorkoutBar si un entraînement est sélectionné
                     WorkoutBar(workout: vm.newWorkout, new: true)
                 }
             }
             .padding(10)
         }
-        .animation(.default, value: vm.recording)
-        .animation(.default, value: vm.selectedWorkout)
-        .alert(vm.error.rawValue, isPresented: $vm.showErrorAlert) {} message: {
+        .animation(.default, value: vm.recording) // anime les changements d'enregistrement
+        .animation(.default, value: vm.selectedWorkout) // anime les modifications apportées à l'entraînement sélectionné
+        .alert(vm.error.rawValue, isPresented: $vm.showErrorAlert) {} message: { // affiche une alerte avec le message d'erreur
             Text(vm.error.message)
         }
-        .onAppear {
+        .onAppear { // affiche un message de bienvenue et l'InfoView au premier lancement
             if !launchedBefore {
                 launchedBefore = true
                 welcome = true
                 vm.showInfoView = true
             }
         }
-        .fullScreenCover(isPresented: $vm.healthUnavailable) {
+        .fullScreenCover(isPresented: $vm.healthUnavailable) { // affiche une ErrorView si l'accès à la santé n'est pas disponible
             ErrorView(systemName: "heart.slash", title: "Health Unavailable", message: "\(NAME) needs access to the Health App to store and load workouts. Unfortunately, this device does not have these capabilities so the app will not work.")
         }
         .sheet(isPresented: $vm.showInfoView, onDismiss: {
@@ -59,14 +59,14 @@ struct RootView: View {
         }) {
             InfoView(welcome: welcome)
         }
-        .sheet(isPresented: $vm.showPermissionsView) {
+        .sheet(isPresented: $vm.showPermissionsView) { // affiche PermissionsView sous forme de feuille
             PermissionsView()
         }
-        .onChange(of: scenePhase) { newPhase in
+        .onChange(of: scenePhase) { newPhase in // met à jour l'état de santé sur scenePhase de phase
             if newPhase == .active {
                 vm.updateHealthStatus()
             }
         }
-        .environmentObject(vm)
+        .environmentObject(vm) // définit l'objet ViewModel comme objet d'environnement
     }
 }

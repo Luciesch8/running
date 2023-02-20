@@ -9,6 +9,6 @@ import Foundation
 
 extension Collection {
     var isNotEmpty: Bool {
-        !isEmpty
+        !isEmpty // renvoie true si la collection n'est pas vide et false sinon
     }
 }

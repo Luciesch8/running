@@ -15,13 +15,13 @@ struct ErrorView: View {
     
     var body: some View {
         VStack(spacing: 10) {
-            Image(systemName: systemName)
+            Image(systemName: systemName) // Image de l'erreur
                 .font(.system(size: 40))
                 .foregroundColor(.secondary)
             VStack(spacing: 5) {
-                Text(title)
+                Text(title) // Titre de l'erreur
                     .font(.title3.bold())
-                Text(message)
+                Text(message) // Message décrivant l'erreur
                     .padding(.horizontal)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)

@@ -7,12 +7,14 @@
 
 import Foundation
 
+// Définition d'une énumération de type de date d'entraînement
 enum MyMapError: String {
     case endingWorkout = "Save Failed"
     case startingWorkout = "Start Failed"
     case noWorkouts = "No Workouts Yet"
     case emptyWorkout = "Workout Discarded"
     
+    // Définition d'un message pour chaque cas d'erreur de la carte
     var message: String {
         switch self {
         case .endingWorkout:

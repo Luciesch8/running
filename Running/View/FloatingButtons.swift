@@ -16,7 +16,9 @@ struct FloatingButtons: View {
     @State var showFilterView = false
     
     var body: some View {
+        
         HStack(spacing: 0) {
+            // Bouton pour mettre à jour le mode de suivi de l'utilisateur
             Button {
                 updateTrackingMode()
             } label: {
@@ -26,6 +28,7 @@ struct FloatingButtons: View {
             }
             Divider().frame(height: SIZE)
             
+            // Bouton pour mettre à jour le type de carte
             Button {
                 updateMapType()
             } label: {
@@ -36,6 +39,7 @@ struct FloatingButtons: View {
             }
             Divider().frame(height: SIZE)
             
+            // Menu pour filtrer les séances d'entraînement
             Menu {
                 Picker("Date", selection: $vm.workoutDate) {
                     Text("All")
@@ -61,6 +65,7 @@ struct FloatingButtons: View {
                 }
                 .pickerStyle(.menu)
                 
+                // Option pour filtrer les séances d'entraînement
                 Text("Filter Workouts")
             } label: {
                 if vm.loadingWorkouts {
@@ -73,6 +78,7 @@ struct FloatingButtons: View {
             }
             Divider().frame(height: SIZE)
             
+            // Bouton pour arrêter une séance d'entraînement en cours
             if vm.recording {
                 Button {
                     showStopConfirmation = true
@@ -92,6 +98,7 @@ struct FloatingButtons: View {
                     }
                 }
             } else {
+                // Bouton pour démarrer une nouvelle
                 Button {
                     showWorkoutTypeChoice = true
                 } label: {
@@ -112,6 +119,7 @@ struct FloatingButtons: View {
             Divider().frame(height: SIZE)
             
             Button {
+                // Ce bouton définit la propriété showInfoView sur true lorsqu'il est tapé
                 vm.showInfoView = true
             } label: {
                 Image(systemName: "info.circle")
@@ -122,7 +130,9 @@ struct FloatingButtons: View {
         .materialBackground()
     }
     
+    // Cette vue a deux fonctions appelées updateTrackingMode() et updateMapType()
     func updateTrackingMode() {
+        // Cette fonction a une variable appelée "mode" qui est calculée en fonction de la valeur de la propriété trackingMode dans le ViewModel
         var mode: MKUserTrackingMode {
             switch vm.trackingMode {
             case .none:
@@ -133,10 +143,12 @@ struct FloatingButtons: View {
                 return .none
             }
         }
+        // Cette fonction appelle la fonction updateTrackingMode() sur le ViewModel et passe la variable "mode" calculée
         vm.updateTrackingMode(mode)
     }
     
     func updateMapType() {
+        // Cette fonction a une variable appelée "type" qui est calculée en fonction de la valeur de la propriété mapType dans le ViewModel
         var type: MKMapType {
             switch vm.mapType {
             case .standard:
@@ -145,9 +157,12 @@ struct FloatingButtons: View {
                 return .standard
             }
         }
+        // Cette fonction appelle la fonction updateMapType() sur le ViewModel et passe la variable "type" calculée
         vm.updateMapType(type)
     }
     
+    
+    // Cette vue a deux propriétés calculées appelées trackingModeImage et mapTypeImage
     var trackingModeImage: String {
         switch vm.trackingMode {
         case .none:

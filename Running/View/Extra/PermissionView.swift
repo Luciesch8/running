@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PermissionsView: View {
-    @EnvironmentObject var vm: ViewModel
+    @EnvironmentObject var vm: ViewModel // L'objet ViewModel est récupéré depuis l'environnement
     
     var body: some View {
         NavigationView {
@@ -25,7 +25,7 @@ struct PermissionsView: View {
                                 .padding(.top, 10)
                             PermissionRow(title: "Health", description: NAME + " needs access to your Health Data to show all your workout routes on one map and save the workouts you record.", allowed: vm.healthAuth, denied: vm.healthStatus == .sharingDenied, instructions: "Please go to Health > Sharing > Apps > \(NAME) and select \"Turn On All\"", linkTitle: "Health", linkString: "x-apple-health://", loading: vm.healthLoading, allowString: "Allow") {
                                 Task {
-                                    await vm.requestHealthAuthorisation()
+                                    await vm.requestHealthAuthorisation() // Une demande d'autorisation est envoyée à l'objet ViewModel
                                 }
                             }
                         }
@@ -72,7 +72,7 @@ struct PermissionsView: View {
                         .bigButton()
                 }
                 .padding()
-                .disabled(!vm.healthAuth || !vm.locationAuth || !vm.accuracyAuth)
+                .disabled(!vm.healthAuth || !vm.locationAuth || !vm.accuracyAuth) // Le bouton est désactivé tant que toutes les autorisations ne sont pas accordées
             }
             .buttonStyle(.borderless)
             .navigationTitle("Need Permissions")
@@ -87,7 +87,7 @@ struct PermissionsView_Previews: PreviewProvider {
         Text("")
             .sheet(isPresented: .constant(true)) {
                 PermissionsView()
-                    .environmentObject(ViewModel())
+                    .environmentObject(ViewModel()) // Une instance de ViewModel est injectée ici en tant qu'environnement
             }
     }
 }
@@ -114,15 +114,16 @@ struct PermissionRow: View {
                 .foregroundColor(.secondary)
                 .font(.subheadline)
                 .fixedSize(horizontal: false, vertical: true)
-            if loading {
+            if loading { // Une vue d'indicateur de chargement est affichée si loading est true
                 ProgressView()
                     .padding(.vertical, 5)
             } else {
                 Button {
                     if denied {
-                        showAlert = true
+                        showAlert = true // Si l'autorisation a été refusée, on affiche une alerte lorsqu'on appuie sur le bouton
                     } else {
-                        request()
+                        request() // Sinon, on appelle la fonction
+
                     }
                 } label: {
                     Text(allowed ? "Allowed" : allowString)
