@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>MyMap</string>
+	<string>Running</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -23,15 +23,15 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSHealthShareUsageDescription</key>
-	<string>MyMap needs permission to read your Health Data to show all your workout routes on one map.</string>
+	<string>Running needs permission to read your Health Data to show all your workout routes on one map.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>MyMap needs permission to write to your Health Data to save the workouts you record.</string>
+	<string>Running needs permission to write to your Health Data to save the workouts you record.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>MyMap needs access to your location "Always" to record your workout routes in the background.</string>
+	<string>Running needs access to your location &quot;Always&quot; to record your workout routes in the background.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>MyMap needs access to your location "Always" to record your workout routes in the background.</string>
+	<string>Running needs access to your location &quot;Always&quot; to record your workout routes in the background.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>MyMap shows your current location on the map.</string>
+	<string>Running shows your current location on the map.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
