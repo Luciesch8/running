@@ -493,3 +493,5 @@ extension ViewModel: MKMapViewDelegate {
         mapView.deselectAnnotation(view.annotation, animated: false)
     }
 }
+
+

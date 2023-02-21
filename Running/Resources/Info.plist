@@ -23,9 +23,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSHealthShareUsageDescription</key>
-	<string>Running needs permission to read your Health Data to show all your workout routes on one map.</string>
+	<string>Running needs permission to read your Health Data to show all your workout routes on one map and your heart rate health.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>Running needs permission to write to your Health Data to save the workouts you record.</string>
+	<string>Running needs permission to write to your Health Data to save the workouts you record and heart rate health.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Running needs access to your location &quot;Always&quot; to record your workout routes in the background.</string>
 	<key>NSLocationAlwaysUsageDescription</key>

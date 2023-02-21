@@ -17,6 +17,7 @@ struct FloatingButtons: View {
     
     var body: some View {
         
+        
         HStack(spacing: 0) {
             // Bouton pour mettre à jour le mode de suivi de l'utilisateur
             Button {
@@ -38,6 +39,7 @@ struct FloatingButtons: View {
                     .rotation3DEffect(.degrees(vm.degrees), axis: (x: 0, y: 1, z: 0))
             }
             Divider().frame(height: SIZE)
+            
             
             // Menu pour filtrer les séances d'entraînement
             Menu {
@@ -126,6 +128,8 @@ struct FloatingButtons: View {
                     .frame(width: SIZE, height: SIZE)
             }
         }
+        
+        
         .font(.system(size: SIZE/2))
         .materialBackground()
     }

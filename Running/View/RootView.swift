@@ -20,11 +20,15 @@ struct RootView: View {
             MapView()
                 .ignoresSafeArea()
             
-            VStack(spacing: 0) {
+            VStack(spacing: 10) {
                 Blur()
                     .ignoresSafeArea()
                 Spacer()
                     .layoutPriority(1)
+            }
+            
+            VStack(spacing: 10) {
+                AccountButtons()
             }
             
             VStack(spacing: 10) {
