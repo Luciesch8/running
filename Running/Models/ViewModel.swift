@@ -105,7 +105,6 @@ class ViewModel: NSObject, ObservableObject {
     @Published var scale = 1.0
     @Published var pulse = false
     @Published var showInfoView = false
-    @Defaults(key: "shownNoWorkoutsError", defaultValue: false) var shownNoWorkoutsError
     
     // Errors
     @Published var showErrorAlert = false
@@ -164,11 +163,7 @@ class ViewModel: NSObject, ObservableObject {
             guard hkWorkouts.isNotEmpty else {
                 DispatchQueue.main.async {
                     self.loadingWorkouts = false
-                    // Si aucun entraînement n'a été retourné et que l'erreur n'a pas déjà été affichée, affiche l'erreur
-                    if !self.shownNoWorkoutsError {
-                        self.shownNoWorkoutsError = true
-                        self.showError(.noWorkouts)
-                    }
+                    
                 }
                 return
             }

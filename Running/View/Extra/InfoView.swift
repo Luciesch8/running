@@ -56,17 +56,7 @@ struct InfoView: View {
                         } label: {
                             Label("Send us Feedback", systemImage: "envelope")
                         }
-                        
-                        Button {
-                            Store.requestRating()
-                        } label: {
-                            Label("Rate \(NAME)", systemImage: "star") //Ouvrir la page de notation de l'application dans l'App Store //Pas utilisé
-                        }
-                        Button {
-                            showShareSheet = true //Afficher la feuille de partage
-                        } label: {
-                            Label("Share with a Friend", systemImage: "person.badge.plus")
-                        }
+            
                     } label: {
                         Text("Contribute...")
                             .bigButton()

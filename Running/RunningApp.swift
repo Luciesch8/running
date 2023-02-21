@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-let SIZE = 48.0
+let SIZE = 50.0
 let NAME = "Running"
 let EMAIL = "luciesch8@gmail.com"
 

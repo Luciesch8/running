@@ -29,8 +29,6 @@
 		997CA34329A2A2A100A586EE /* MyMapError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CA34229A2A2A100A586EE /* MyMapError.swift */; };
 		997CA34529A2A2C300A586EE /* HKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CA34429A2A2C300A586EE /* HKHelper.swift */; };
 		997CA34729A2A2DA00A586EE /* Emails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CA34629A2A2DA00A586EE /* Emails.swift */; };
-		997CA34929A2A2E800A586EE /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CA34829A2A2E800A586EE /* Defaults.swift */; };
-		997CA34B29A2A2F700A586EE /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CA34A29A2A2F700A586EE /* Store.swift */; };
 		997CA34D29A2A30900A586EE /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CA34C29A2A30900A586EE /* Haptics.swift */; };
 		997CA34F29A2A31F00A586EE /* CLLocationCoordinate2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CA34E29A2A31F00A586EE /* CLLocationCoordinate2D.swift */; };
 		997CA35129A2A33200A586EE /* CLLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CA35029A2A33200A586EE /* CLLocation.swift */; };
@@ -63,8 +61,6 @@
 		997CA34229A2A2A100A586EE /* MyMapError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMapError.swift; sourceTree = "<group>"; };
 		997CA34429A2A2C300A586EE /* HKHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKHelper.swift; sourceTree = "<group>"; };
 		997CA34629A2A2DA00A586EE /* Emails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emails.swift; sourceTree = "<group>"; };
-		997CA34829A2A2E800A586EE /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
-		997CA34A29A2A2F700A586EE /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		997CA34C29A2A30900A586EE /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		997CA34E29A2A31F00A586EE /* CLLocationCoordinate2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationCoordinate2D.swift; sourceTree = "<group>"; };
 		997CA35029A2A33200A586EE /* CLLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocation.swift; sourceTree = "<group>"; };
@@ -145,8 +141,6 @@
 			children = (
 				997CA34429A2A2C300A586EE /* HKHelper.swift */,
 				997CA34629A2A2DA00A586EE /* Emails.swift */,
-				997CA34829A2A2E800A586EE /* Defaults.swift */,
-				997CA34A29A2A2F700A586EE /* Store.swift */,
 				997CA34C29A2A30900A586EE /* Haptics.swift */,
 			);
 			path = Helper;
@@ -260,7 +254,6 @@
 				997CA33329A2A1FF00A586EE /* ShareView.swift in Sources */,
 				997CA32229A2A12A00A586EE /* FloatingButtons.swift in Sources */,
 				997CA34F29A2A31F00A586EE /* CLLocationCoordinate2D.swift in Sources */,
-				997CA34B29A2A2F700A586EE /* Store.swift in Sources */,
 				997CA33529A2A21400A586EE /* Row.swift in Sources */,
 				997CA32029A2A11700A586EE /* MapView.swift in Sources */,
 				997CA34329A2A2A100A586EE /* MyMapError.swift in Sources */,
@@ -278,7 +271,6 @@
 				997CA32D29A2A19F00A586EE /* InfoView.swift in Sources */,
 				997CA32F29A2A1B700A586EE /* DraggableBar.swift in Sources */,
 				997CA33929A2A23B00A586EE /* Blur.swift in Sources */,
-				997CA34929A2A2E800A586EE /* Defaults.swift in Sources */,
 				997CA33729A2A22100A586EE /* View.swift in Sources */,
 				997CA35329A2A34300A586EE /* Date.swift in Sources */,
 				997CA33D29A2A26600A586EE /* Workout.swift in Sources */,
