@@ -24,6 +24,8 @@ class ViewModel: NSObject, ObservableObject {
     @Published var startDate = Date() // La date/heure de début du suivi
     @Published var metres = 0.0 // La distance parcourue lors du suivi
     @Published var locations = [CLLocation]() // Un tableau d'objets CLLocation représentant le chemin tracé
+    @Published var heartRate = "N/A" // Rythme cardiaque 
+
     
     // Propriété calculée qui renvoie une MKPolyline basée sur le tableau locations
     var polyline: MKPolyline {
@@ -34,7 +36,7 @@ class ViewModel: NSObject, ObservableObject {
     // Propriété calculée qui renvoie un nouvel objet d'entraînement basé sur l'état actuel du ViewModel.
     var newWorkout: Workout {
         let duration = Date.now.timeIntervalSince(startDate)
-        return Workout(type: type, polyline: polyline, locations: locations, date: startDate, duration: duration)
+        return Workout(type: type, polyline: polyline, locations: locations, date: startDate, duration: duration, heartRate: heartRate)
     }
     
     

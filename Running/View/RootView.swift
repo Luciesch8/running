@@ -26,11 +26,11 @@ struct RootView: View {
                 Spacer()
                     .layoutPriority(1)
             }
-            
+            /*
             VStack(spacing: 10) {
                 AccountButtons()
             }
-            
+            */
             VStack(spacing: 10) {
                 Spacer()
                 if let workout = vm.selectedWorkout { // affiche une autre WorkoutBar en cas d'enregistrement

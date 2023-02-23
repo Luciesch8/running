@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		992E31D429A4FDC90078598A /* AccountButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992E31D329A4FDC90078598A /* AccountButtons.swift */; };
 		992E31D629A501430078598A /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992E31D529A501430078598A /* AccountView.swift */; };
+		992E31D829A78AD90078598A /* HeartRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992E31D729A78AD90078598A /* HeartRate.swift */; };
 		997CA30A29A294F300A586EE /* RunningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CA30929A294F300A586EE /* RunningApp.swift */; };
 		997CA30E29A294F400A586EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 997CA30D29A294F400A586EE /* Assets.xcassets */; };
 		997CA31E29A2A10600A586EE /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CA31D29A2A10600A586EE /* RootView.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		992E31D329A4FDC90078598A /* AccountButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButtons.swift; sourceTree = "<group>"; };
 		992E31D529A501430078598A /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		992E31D729A78AD90078598A /* HeartRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRate.swift; sourceTree = "<group>"; };
 		997CA30629A294F300A586EE /* Running.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Running.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		997CA30929A294F300A586EE /* RunningApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningApp.swift; sourceTree = "<group>"; };
 		997CA30D29A294F400A586EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -120,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				997CA31D29A2A10600A586EE /* RootView.swift */,
-				992E31D529A501430078598A /* AccountView.swift */,
 				997CA31F29A2A11700A586EE /* MapView.swift */,
 				997CA32129A2A12A00A586EE /* FloatingButtons.swift */,
 				997CA32329A2A14200A586EE /* WorkoutBar.swift */,
@@ -134,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				997CA33A29A2A25A00A586EE /* ViewModel.swift */,
+				992E31D729A78AD90078598A /* HeartRate.swift */,
 				997CA33C29A2A26600A586EE /* Workout.swift */,
 				997CA33E29A2A27B00A586EE /* WorkoutType.swift */,
 				997CA34029A2A29100A586EE /* WorkoutFilter.swift */,
@@ -166,6 +168,7 @@
 		997CA32529A2A14800A586EE /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				992E31D529A501430078598A /* AccountView.swift */,
 				997CA32629A2A15900A586EE /* ErrorView.swift */,
 				997CA32A29A2A19300A586EE /* PermissionView.swift */,
 				997CA32C29A2A19F00A586EE /* InfoView.swift */,
@@ -264,6 +267,7 @@
 				992E31D629A501430078598A /* AccountView.swift in Sources */,
 				997CA32029A2A11700A586EE /* MapView.swift in Sources */,
 				997CA34329A2A2A100A586EE /* MyMapError.swift in Sources */,
+				992E31D829A78AD90078598A /* HeartRate.swift in Sources */,
 				992E31D429A4FDC90078598A /* AccountButtons.swift in Sources */,
 				997CA32B29A2A19300A586EE /* PermissionView.swift in Sources */,
 				997CA35529A2A35300A586EE /* Collection.swift in Sources */,

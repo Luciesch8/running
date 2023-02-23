@@ -14,6 +14,7 @@ struct WorkoutBar: View {
     @State var offset = Double.zero
     
     let workout: Workout
+    //let heartRate: HeartRate
     let new: Bool
     
     var body: some View {
@@ -41,7 +42,11 @@ struct WorkoutBar: View {
                 Spacer(minLength: 0)
                 WorkoutStat(name: "Speed", value: Measurement(value: workout.distance / workout.duration, unit: UnitSpeed.metersPerSecond).formatted()) // Afficher la vitesse formatée
                 Spacer(minLength: 0)
+
                 WorkoutStat(name: "Elevation", value: Measurement(value: workout.elevation, unit: UnitLength.meters).formatted())// Afficher l'élévation formatée
+                Spacer(minLength: 0)
+
+                WorkoutStat(name: "Heart Rate", value: workout.heartRate)// Afficher rythme cardique
             }
         }
         .padding(.horizontal, 12)

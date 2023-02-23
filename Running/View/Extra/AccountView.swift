@@ -1,13 +1,14 @@
 //
-//  InfoView.swift
+//  AccountView.swift
 //  Running
 //
-//  Created by Ah lucie nous gênes 🍄 on 12/02/2023.
+//  Created by Ah lucie nous gênes 🍄 on 21/02/2023.
 //
 
 import SwiftUI
 
-struct InfoView: View {
+struct AccountView: View {
+    
     @Environment(\.dismiss) var dismiss
     @State var showShareSheet = false
     
@@ -36,9 +37,9 @@ struct InfoView: View {
                 .padding(.bottom, 30)
                 
                 //Affichage de trois rangées d'informations
-                InfoRow(systemName: "map", title: "Browse all your Routes", description: "See all your routes stored in the Health App on one map.")
-                InfoRow(systemName: "record.circle", title: "Record Workouts", description: "Record runs, walks and cycles and see your route update live.")
-                InfoRow(systemName: "line.3.horizontal.decrease.circle", title: "Filter Workouts", description: "Filter the workouts shown on the map by date and type.")
+                AccountRow(systemName: "map", title: "Browse all your Routes", description: "See all your routes stored in the Health App on one map.")
+                AccountRow(systemName: "record.circle", title: "Record Workouts", description: "Record runs, walks and cycles and see your route update live.")
+                AccountRow(systemName: "line.3.horizontal.decrease.circle", title: "Filter Workouts", description: "Filter the workouts shown on the map by date and type.")
                 Spacer()
                 
                 if welcome { //Si l'utilisateur est un nouvel utilisateur
@@ -92,18 +93,19 @@ struct InfoView: View {
         .interactiveDismissDisabled(welcome)
     }
 }
-
-// Prévisualisation de la vue
-struct InfoView_Previews: PreviewProvider {
+struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
         Text("")
             .sheet(isPresented: .constant(true)) {
-                InfoView(welcome: true)
+                AccountView(welcome: true)
             }
     }
 }
 
-struct InfoRow: View {
+
+
+//info Row
+struct AccountRow: View {
     let systemName: String
     let title: String
     let description: String
@@ -124,5 +126,4 @@ struct InfoRow: View {
         .padding(.vertical)
     }
 }
-
 
