@@ -38,6 +38,8 @@
 		997CA35329A2A34300A586EE /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CA35229A2A34300A586EE /* Date.swift */; };
 		997CA35529A2A35300A586EE /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CA35429A2A35300A586EE /* Collection.swift */; };
 		997CA35829A2ABF000A586EE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 997CA35729A2ABF000A586EE /* HealthKit.framework */; };
+		99FBCDB529ABE25A0030DF25 /* HeartRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FBCDB429ABE25A0030DF25 /* HeartRateView.swift */; };
+		99FBCDB729ABEDEE0030DF25 /* RunListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FBCDB629ABEDEE0030DF25 /* RunListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,8 @@
 		997CA35429A2A35300A586EE /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		997CA35729A2ABF000A586EE /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		997CA35A29A2BC0100A586EE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		99FBCDB429ABE25A0030DF25 /* HeartRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateView.swift; sourceTree = "<group>"; };
+		99FBCDB629ABEDEE0030DF25 /* RunListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				992E31D529A501430078598A /* AccountView.swift */,
+				99FBCDB629ABEDEE0030DF25 /* RunListView.swift */,
+				99FBCDB429ABE25A0030DF25 /* HeartRateView.swift */,
 				997CA32629A2A15900A586EE /* ErrorView.swift */,
 				997CA32A29A2A19300A586EE /* PermissionView.swift */,
 				997CA32C29A2A19F00A586EE /* InfoView.swift */,
@@ -262,9 +268,11 @@
 			files = (
 				997CA33329A2A1FF00A586EE /* ShareView.swift in Sources */,
 				997CA32229A2A12A00A586EE /* FloatingButtons.swift in Sources */,
+				99FBCDB729ABEDEE0030DF25 /* RunListView.swift in Sources */,
 				997CA34F29A2A31F00A586EE /* CLLocationCoordinate2D.swift in Sources */,
 				997CA33529A2A21400A586EE /* Row.swift in Sources */,
 				992E31D629A501430078598A /* AccountView.swift in Sources */,
+				99FBCDB529ABE25A0030DF25 /* HeartRateView.swift in Sources */,
 				997CA32029A2A11700A586EE /* MapView.swift in Sources */,
 				997CA34329A2A2A100A586EE /* MyMapError.swift in Sources */,
 				992E31D829A78AD90078598A /* HeartRate.swift in Sources */,

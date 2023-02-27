@@ -13,86 +13,84 @@ struct AccountView: View {
     @State var showShareSheet = false
     
     let welcome: Bool //Propriété pour déterminer si l'utilisateur est un nouvel utilisateur
-
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading, spacing: 0) {
-                VStack(spacing: 0) {
-                    Image("logo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 70, height: 70)
-                        .cornerRadius(15)
-                        .padding(.bottom)
-                    Text((welcome ? "Welcome to\n" : "") + NAME) //Texte de bienvenue et nom de l'application
-                        .font(.largeTitle.bold())
-                        .multilineTextAlignment(.center)
-                        .padding(.bottom, 5)
-                    if !welcome { //Si l'utilisateur n'est pas un nouvel utilisateur
-                        Text("Version " + (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""))
-                            .foregroundColor(.secondary)
-                    }
+                
+                
+                            
+            
+                NavigationView {
+                        VStack(spacing: 20) {
+                            Spacer()
+                            NavigationLink(
+                                destination: HeartRateView(heartRate : 80)
+,
+                                label: {
+                                    HStack {
+                                        Text("Heart Rate")
+                                            .font(.headline)
+                                            .foregroundColor(.white)
+                                            .padding(.leading, 16)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .foregroundColor(.white)
+                                            .padding(.trailing, 16)
+                                    }
+                                    .frame(height: 75)
+                                    .background(Color.gray.opacity(0.2))
+                                    .cornerRadius(10)
+                                })
+                            NavigationLink(
+                                destination: RunListView(),
+                                label: {
+                                    HStack {
+                                        Text("Running List")
+                                            .font(.headline)
+                                            .foregroundColor(.white)
+                                            .padding(.leading, 16)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .foregroundColor(.white)
+                                            .padding(.trailing, 16)
+                                    }
+                                    .frame(height: 75)
+                                    .background(Color.gray.opacity(0.2))
+                                    .cornerRadius(10)
+                                })
+                            Spacer()
+                        }
                 }
                 .horizontallyCentred()
                 .padding(.bottom, 30)
                 
-                //Affichage de trois rangées d'informations
-                AccountRow(systemName: "map", title: "Browse all your Routes", description: "See all your routes stored in the Health App on one map.")
-                AccountRow(systemName: "record.circle", title: "Record Workouts", description: "Record runs, walks and cycles and see your route update live.")
-                AccountRow(systemName: "line.3.horizontal.decrease.circle", title: "Filter Workouts", description: "Filter the workouts shown on the map by date and type.")
-                Spacer()
+               Spacer()
                 
-                if welcome { //Si l'utilisateur est un nouvel utilisateur
-                    Button {
-                        dismiss() //Fermer la vue
-                    } label: {
-                        Text("Continue")
-                            .bigButton()
-                    }
-                } else { //Sinon, s'il s'agit d'un utilisateur existant
-                    //Afficher un menu avec trois options
-                    Menu {
-                        Button {
-                            Emails.compose(subject: "\(NAME) Feedback") //Ouvrir une fenêtre de composition de courriel avec le sujet prérempli
-                        } label: {
-                            Label("Send us Feedback", systemImage: "envelope")
-                        }
-            
-                    } label: {
-                        Text("Contribute...")
-                            .bigButton()
-                    }
-                }
+    
             }
             .padding()
             .navigationBarTitleDisplayMode(.inline) //Afficher le titre de la vue en inline dans la barre de navigation
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
-                    if !welcome { //Si l'utilisateur est un utilisateur existant
                         Button {
                             dismiss()
                         } label: {
                             DismissCross()
                         }
                         .buttonStyle(.plain)
-                    }
+                    
                 }
                 // Item de la barre d'outils pour le titre ou la barre de déplacement
                 ToolbarItem(placement: .principal) {
-                    if welcome {
-                        Text("")
-                    } else {
                         DraggableBar()
                     }
-                }
+                
             }
-
         }
-        // Désactiver le balayage de défilement sur la vue si l'utilisateur est nouveau
-
-        .interactiveDismissDisabled(welcome)
     }
 }
+
 struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
         Text("")

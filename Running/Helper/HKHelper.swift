@@ -21,8 +21,6 @@ struct HKHelper {
             HKObjectType.workoutType(),
             HKSeriesType.workoutRoute(),
             HKObjectType.quantityType(forIdentifier: .heartRate)!,
-            //HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!,
-
         ]
         
         // Demande de l'autorisation d'accéder aux types de données définis ci-dessus.
@@ -36,21 +34,16 @@ struct HKHelper {
         let workoutStatus = healthStore.authorizationStatus(for: HKObjectType.workoutType())
         let routeStatus = healthStore.authorizationStatus(for: HKSeriesType.workoutRoute())
         let heartRateStatus = healthStore.authorizationStatus(for: HKObjectType.quantityType(forIdentifier: .heartRate)!)
-        //let heartRateVariabilityStatus = healthStore.authorizationStatus(for: HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!)
-
 
 
         // Détermine si les deux types de données ont été autorisés à être partagés.
-        if workoutStatus == .sharingAuthorized && routeStatus == .sharingAuthorized && heartRateStatus == .sharingAuthorized/* && heartRateVariabilityStatus == .sharingAuthorized*/ {
+        if workoutStatus == .sharingAuthorized && routeStatus == .sharingAuthorized && heartRateStatus == .sharingAuthorized{
             return .sharingAuthorized
-        } else if workoutStatus == .notDetermined && routeStatus == .notDetermined && heartRateStatus == .notDetermined/* && heartRateVariabilityStatus == .notDetermined */{
+        } else if workoutStatus == .notDetermined && routeStatus == .notDetermined && heartRateStatus == .notDetermined{
             return .notDetermined
         } else {
             return .sharingDenied
         }
-        
-
-        
     }
     
     // La méthode loadWorkouts charge une liste d'entraînements à partir des données de santé de l'utilisateur.

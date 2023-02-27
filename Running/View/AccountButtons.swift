@@ -10,10 +10,22 @@ import MapKit
 import HealthKit
 
 struct AccountButtons: View {
-    @EnvironmentObject var vm: ViewModel
-
+    @Environment(\.dismiss) var dismiss
+    @State var showShareSheet = false
+    
+    
     var body: some View {
+        NavigationView {
+            VStack(alignment: .leading, spacing: 0) {
+                VStack(spacing: 0) {
+                    
+                    Text("Test")
+                }
+            }
 
+        }
+        
+        /*
         HStack{
             HStack(spacing: 0){
                 NavigationLink(destination: AccountButtons()) {
@@ -25,13 +37,13 @@ struct AccountButtons: View {
              Divider().frame(height: SIZE)
 
             }
-            .font(.system(size: SIZE/2))
-            .materialBackground()
+            //.font(.system(size: SIZE/2))
+            //.materialBackground()
             
         }
-        .padding(.trailing, 350)
-        .offset(x: 0, y: -700)
-
+        //.padding(.trailing, 350)
+        //.offset(x: 0, y: -700)
+         */
     }
 
 

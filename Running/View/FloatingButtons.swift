@@ -127,6 +127,18 @@ struct FloatingButtons: View {
                 Image(systemName: "info.circle")
                     .frame(width: SIZE, height: SIZE)
             }
+            
+            
+            //Divider().frame(height: SIZE)
+
+            
+            Button {
+                // Ce bouton définit la propriété showAccountView sur true lorsqu'il est tapé
+                vm.showAccountView = true
+            } label: {
+                Image(systemName: "person.circle")
+                    .frame(width: SIZE, height: SIZE)
+            }
         }
         
         

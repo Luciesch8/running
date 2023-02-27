@@ -29,8 +29,8 @@ struct RootView: View {
             /*
             VStack(spacing: 10) {
                 AccountButtons()
-            }
-            */
+            }*/
+            
             VStack(spacing: 10) {
                 Spacer()
                 if let workout = vm.selectedWorkout { // affiche une autre WorkoutBar en cas d'enregistrement
@@ -53,6 +53,8 @@ struct RootView: View {
                 launchedBefore = true
                 welcome = true
                 vm.showInfoView = true
+                vm.showAccountView = false
+
             }
         }
         .fullScreenCover(isPresented: $vm.healthUnavailable) { // affiche une ErrorView si l'accès à la santé n'est pas disponible
@@ -63,6 +65,13 @@ struct RootView: View {
         }) {
             InfoView(welcome: welcome)
         }
+        
+        .sheet(isPresented: $vm.showAccountView, onDismiss: {
+            welcome = false
+        }) {
+            AccountView(welcome: welcome)
+        }
+
         .sheet(isPresented: $vm.showPermissionsView) { // affiche PermissionsView sous forme de feuille
             PermissionsView()
         }

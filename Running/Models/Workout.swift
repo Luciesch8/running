@@ -18,9 +18,9 @@ class Workout: NSObject {
     let duration: Double // durée de l'exercice en secondes
     let distance: Double // distance totale parcourue pendant l'exercice
     let elevation: Double // dénivelé total de l'exercice
-    let heartRate: String // mesure de la fréquence cardiaque
+    let heartRate: Int // mesure de la fréquence cardiaque
     
-    init(type: WorkoutType, polyline: MKPolyline, locations: [CLLocation], date: Date, duration: Double, heartRate: String) {
+    init(type: WorkoutType, polyline: MKPolyline, locations: [CLLocation], date: Date, duration: Double, heartRate: Int) {
         self.type = type
         self.polyline = polyline
         self.locations = locations
@@ -37,13 +37,13 @@ class Workout: NSObject {
         let polyline = MKPolyline(coordinates: coords, count: coords.count)
         let date = hkWorkout.startDate
         let duration = hkWorkout.duration
-        let heartRate = ""
+        let heartRate = 0
         self.init(type: type, polyline: polyline, locations: locations, date: date, duration: duration, heartRate: heartRate)
     }
 
 
     
-    static let example = Workout(type: .walk, polyline: MKPolyline(), locations: [], date: .now, duration: 3456, heartRate: "95") // un exemple d'exercice
+    static let example = Workout(type: .walk, polyline: MKPolyline(), locations: [], date: .now, duration: 3456, heartRate: 70) // un exemple d'exercice
 
 }
 

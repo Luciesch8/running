@@ -24,7 +24,7 @@ class ViewModel: NSObject, ObservableObject {
     @Published var startDate = Date() // La date/heure de début du suivi
     @Published var metres = 0.0 // La distance parcourue lors du suivi
     @Published var locations = [CLLocation]() // Un tableau d'objets CLLocation représentant le chemin tracé
-    @Published var heartRate = "N/A" // Rythme cardiaque 
+    @Published var heartRate = "92" // Rythme cardiaque 
 
     
     // Propriété calculée qui renvoie une MKPolyline basée sur le tableau locations
@@ -107,7 +107,8 @@ class ViewModel: NSObject, ObservableObject {
     @Published var scale = 1.0
     @Published var pulse = false
     @Published var showInfoView = false
-    
+    @Published var showAccountView = false
+
     // Errors
     @Published var showErrorAlert = false
     @Published var error = MyMapError.noWorkouts
