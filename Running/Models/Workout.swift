@@ -20,6 +20,8 @@ class Workout: NSObject {
     let elevation: Double // dénivelé total de l'exercice
     let heartRate: Int // mesure de la fréquence cardiaque
     
+    
+    
     init(type: WorkoutType, polyline: MKPolyline, locations: [CLLocation], date: Date, duration: Double, heartRate: Int) {
         self.type = type
         self.polyline = polyline
@@ -37,10 +39,29 @@ class Workout: NSObject {
         let polyline = MKPolyline(coordinates: coords, count: coords.count)
         let date = hkWorkout.startDate
         let duration = hkWorkout.duration
-        let heartRate = 0
-        self.init(type: type, polyline: polyline, locations: locations, date: date, duration: duration, heartRate: heartRate)
+        var heartRate = 0
+        
+        // Récupération des données de fréquence cardiaque
+        let heartRateUnit = HKUnit.count().unitDivided(by: .minute())
+        let predicate = HKQuery.predicateForSamples(withStart: hkWorkout.startDate, end: hkWorkout.endDate, options: .strictEndDate)
+        
+        let query = HKSampleQuery(sampleType: HKQuantityType.quantityType(forIdentifier: .heartRate)!, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, results, error) in
+            if let heartRates = results as? [HKQuantitySample] {
+                let averageHeartRate = heartRates.reduce(0.0) { $0 + $1.quantity.doubleValue(for: heartRateUnit) } / Double(heartRates.count)
+                if averageHeartRate.isFinite {
+                    heartRate = Int(averageHeartRate)
+                } else {
+                    heartRate = 0
+                }
+            }
+        }
+        HKHealthStore().execute(query)
+        
+        let workout = Workout(type: type, polyline: polyline, locations: locations, date: date, duration: duration, heartRate: heartRate)
+        self.init(type: workout.type, polyline: workout.polyline, locations: workout.locations, date: workout.date, duration: workout.duration, heartRate: workout.heartRate)
     }
 
+    
 
     
     static let example = Workout(type: .walk, polyline: MKPolyline(), locations: [], date: .now, duration: 3456, heartRate: 70) // un exemple d'exercice

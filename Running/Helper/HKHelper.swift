@@ -20,7 +20,7 @@ struct HKHelper {
         let types: Set = [
             HKObjectType.workoutType(),
             HKSeriesType.workoutRoute(),
-            HKObjectType.quantityType(forIdentifier: .heartRate)!,
+            HKObjectType.quantityType(forIdentifier: .heartRate)!, //
         ]
         
         // Demande de l'autorisation d'accéder aux types de données définis ci-dessus.
@@ -33,7 +33,7 @@ struct HKHelper {
         // Vérification de l'état d'autorisation pour les types de données d'entraînement et de parcours.
         let workoutStatus = healthStore.authorizationStatus(for: HKObjectType.workoutType())
         let routeStatus = healthStore.authorizationStatus(for: HKSeriesType.workoutRoute())
-        let heartRateStatus = healthStore.authorizationStatus(for: HKObjectType.quantityType(forIdentifier: .heartRate)!)
+        let heartRateStatus = healthStore.authorizationStatus(for: HKObjectType.quantityType(forIdentifier: .heartRate)!)  //recuperation des donnée cardique
 
 
         // Détermine si les deux types de données ont été autorisés à être partagés.
@@ -129,10 +129,10 @@ struct HKHelper {
         }
         
         // Démarre la prise de la fréquence cardiaque toutes les 2 minutes
-        let timer = Timer.scheduledTimer(withTimeInterval: 120.0, repeats: true) { timer in
+        let timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { timer in
             // Crée une requête pour récupérer la dernière lecture de la fréquence cardiaque
             let endDate = Date()
-            let startDate = endDate.addingTimeInterval(-120.0)
+            let startDate = endDate.addingTimeInterval(-30.0)
             let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictEndDate)
             let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
             let query = HKSampleQuery(sampleType: heartRateType, predicate: predicate, limit: 1, sortDescriptors: [sortDescriptor]) { query, results, error in
@@ -156,7 +156,9 @@ struct HKHelper {
         RunLoop.current.add(timer, forMode: .common)
     }
 
-
+    
+    //fonction qui permet de recupere le dernier resulat de la frequence cardiaque
+//
      
      
 

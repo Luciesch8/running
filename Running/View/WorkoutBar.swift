@@ -46,7 +46,7 @@ struct WorkoutBar: View {
                 WorkoutStat(name: "Elevation", value: Measurement(value: workout.elevation, unit: UnitLength.meters).formatted())// Afficher l'élévation formatée
                 Spacer(minLength: 0)
 
-                WorkoutStat(name: "Heart Rate", value:  workout.heartRate)// Afficher rythme cardique
+                WorkoutStat(name: "Heart Rate", value:  String(workout.heartRate))// Afficher rythme cardique
             }
         }
         .padding(.horizontal, 12)
@@ -78,6 +78,8 @@ struct WorkoutBar: View {
         }
     }
 }
+
+
 
 struct WorkoutBar_Previews: PreviewProvider {
     static var previews: some View {

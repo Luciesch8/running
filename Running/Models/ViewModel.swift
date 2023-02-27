@@ -12,19 +12,21 @@ import MapKit
 import SwiftUI
 import Combine
 
+
+
 // Utilisez MainActor pour assurer que toutes les mises à jour du modèle de vue sont effectuées sur le thread principal.
 @MainActor
 class ViewModel: NSObject, ObservableObject {
     // MARK: - Properties
     
     // Utilise le wrapper de propriété @Published pour permettre à SwiftUI de mettre automatiquement à jour les vues lorsque les valeurs changent.
-    // Workout Tracking
+    // Workout Trackingf
     @Published var recording = false // Si oui ou non le suivi de l'entraînement est actuellement actif
     @Published var type = WorkoutType.other // Le type d'entraînement suivi
     @Published var startDate = Date() // La date/heure de début du suivi
     @Published var metres = 0.0 // La distance parcourue lors du suivi
     @Published var locations = [CLLocation]() // Un tableau d'objets CLLocation représentant le chemin tracé
-    @Published var heartRate = "92" // Rythme cardiaque 
+    @Published var heartRate = 40 // Rythme cardiaque
 
     
     // Propriété calculée qui renvoie une MKPolyline basée sur le tableau locations
@@ -282,7 +284,8 @@ class ViewModel: NSObject, ObservableObject {
         mapView?.setVisibleMapRect(overlay.boundingMapRect, edgePadding: padding, animated: true)
     }
     
-    // MARK: - Workout Tracking
+    // MARK: - Workout Tracking // rajouter la partie recuperation de la donnée cardique
+    
     func startWorkout(type: HKWorkoutActivityType) async {
         updateHealthStatus()
         guard healthAuth else { return }
@@ -301,6 +304,29 @@ class ViewModel: NSObject, ObservableObject {
             return
         }
         
+        // Récupération des données de fréquence cardiaque
+        do {
+            let heartRateType = HKQuantityType.quantityType(forIdentifier: .heartRate)!
+            let heartRateQuery = HKAnchoredObjectQuery(type: heartRateType, predicate: nil, anchor: nil, limit: HKObjectQueryNoLimit) { (query, samples, deletedObjects, anchor, error) in
+                if let error = error {
+                    print("Error retrieving heart rate samples: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let samples = samples as? [HKQuantitySample] else { return }
+                
+                for sample in samples {
+                    let heartRateUnit = HKUnit(from: "count/min")
+                    let heartRate = sample.quantity.doubleValue(for: heartRateUnit)
+                    self.heartRate = Int(heartRate)
+                }
+            }
+            
+            healthStore.execute(heartRateQuery)
+        } catch {
+            print("Error retrieving heart rate: \(error.localizedDescription)")
+        }
+        
         locationManager.allowsBackgroundLocationUpdates = true
         updateTrackingMode(.followWithHeading) // met à jour la vue de la carte pour suivre l'emplacement de l'utilisateur
         
@@ -311,6 +337,7 @@ class ViewModel: NSObject, ObservableObject {
             self.pulse.toggle()
         }
     }
+
     
     func discardWorkout() { // interdire les mises à jour de localisation en arrière-plan
         locationManager.allowsBackgroundLocationUpdates = false
@@ -318,6 +345,7 @@ class ViewModel: NSObject, ObservableObject {
         timer?.cancel()
         recording = false
         
+        heartRate = 0
         metres = 0
         locations = []
         updatePolylines()
@@ -339,6 +367,7 @@ class ViewModel: NSObject, ObservableObject {
         filterWorkouts()
         selectWorkout(workout)
         
+        heartRate = 0
         metres = 0
         locations = []
         
